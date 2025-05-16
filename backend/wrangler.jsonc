@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "backend",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-05-15",
+
+  "vars": {
+    "DATABASE_URL": "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiYTZkMmZkYzAtNjBhMC00ZDQ4LTkxODYtNDYyMzlhMjIwNDJiIiwidGVuYW50X2lkIjoiYTA1MzdjNDVmMmRiNzFmNGZkN2RmY2FlNjJlYTUwNjdmN2M0OGIyMTkxYjI2ZTQwNmNlZDBlOTExMjcxY2VkZCIsImludGVybmFsX3NlY3JldCI6IjFjOTcwMGIyLWE1OWItNGUyZC1hMzhjLWYyODg0ZjliODc2MSJ9.N3myRvS8VxoBgcJm7h3GOMFL0nQXVFBhBshYMfwwHso",
+    "JWT_SECRET": "wallahbabibi"
+  }
+}
