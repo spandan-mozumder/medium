@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { type SignupInput } from "@spandyzlost/medium-zod-types";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { storeTokenWithExpiry } from "../hooks";
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
   const navigate = useNavigate();
@@ -19,11 +20,10 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
         postInputs
       );
       const jwt = response.data.jwt;
-      localStorage.setItem("token", jwt);
+      storeTokenWithExpiry(jwt);
       navigate("/blogs");
     } catch (e) {
       alert("Error while signing up");
-      // alert the user here that the request failed
     }
   }
 
