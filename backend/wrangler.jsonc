@@ -5,7 +5,7 @@
   "compatibility_date": "2025-05-15",
 
   "vars": {
-    "DATABASE_URL": "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMDFKVzcwOVQzVE5NUUVTNDgxVEs3NTdBVkoiLCJ0ZW5hbnRfaWQiOiJhMDUzN2M0NWYyZGI3MWY0ZmQ3ZGZjYWU2MmVhNTA2N2Y3YzQ4YjIxOTFiMjZlNDA2Y2VkMGU5MTEyNzFjZWRkIiwiaW50ZXJuYWxfc2VjcmV0IjoiMWM5NzAwYjItYTU5Yi00ZTJkLWEzOGMtZjI4ODRmOWI4NzYxIn0.7yhC5Pr_9io-8TSeCKxwoSAuzLuA_laRYNI9pRZG5DI",
-    "JWT_SECRET": "secret"
+    "DATABASE_URL": "prisma accelerate url",
+    "JWT_SECRET": "your jwt secret"
   }
 }
