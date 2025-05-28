@@ -1,7 +1,12 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { BACKEND_URL } from "../config";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+
+import axios from 'axios';
+
+import { BACKEND_URL } from '../config';
+
+import { useNavigate } from 'react-router-dom';
+
+import { toast } from 'react-toastify';
 
 export interface Blog {
   content: string;
@@ -21,8 +26,12 @@ export const useBlog = ({ id }: { id: string }) => {
     const token = getValidToken();
 
     if (!token) {
-      alert("TOKEN_EXPIRED");
-      navigate("/signin");
+      toast.error('Session expired. Please sign in again.', {
+        autoClose: 2000,
+      });
+      setTimeout(() => {
+        navigate('/signin');
+      }, 2000);
       return;
     }
 
@@ -37,8 +46,12 @@ export const useBlog = ({ id }: { id: string }) => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching blog:", err);
-        navigate("/signin");
+        toast.error('Error fetching the blog' + err, {
+          autoClose: 2000,
+        });
+        setTimeout(() => {
+          navigate('/signin');
+        }, 2000);
       });
   }, [id, navigate]);
 
@@ -57,8 +70,12 @@ export const useBlogs = () => {
     const token = getValidToken();
 
     if (!token) {
-      alert("TOKEN_EXPIRED");
-      navigate("/signin");
+      toast.error('Session expired. Please sign in again.', {
+        autoClose: 2000,
+      });
+      setTimeout(() => {
+        navigate('/signin');
+      }, 2000);
       return;
     }
 
@@ -72,9 +89,13 @@ export const useBlogs = () => {
         setBlogs(response.data.blogs);
         setLoading(false);
       })
-      .catch((error) => {
-        console.error("Error fetching blogs:", error);
-        navigate("/signin");
+      .catch((err) => {
+        toast.error('Error fetching blogs:' + err, {
+          autoClose: 2000,
+        });
+        setTimeout(() => {
+          navigate('/signin');
+        }, 2000);
       });
   }, [navigate]);
 
@@ -82,25 +103,25 @@ export const useBlogs = () => {
     loading,
     blogs,
   };
-}; 
+};
 
-const ONE_MINUTE_TTL = 300 * 1000;
+const ONE_MINUTE_TTL = 300 * 2000;
 
 export const storeTokenWithExpiry = (token: string) => {
-  if (typeof window === "undefined") return;
+  if (typeof window === 'undefined') return;
 
   const now = new Date();
   const expiry = now.getTime() + ONE_MINUTE_TTL;
 
-  localStorage.setItem("token", token);
-  localStorage.setItem("expiry", expiry.toString());
+  localStorage.setItem('token', token);
+  localStorage.setItem('expiry', expiry.toString());
 };
 
 export const getValidToken = (): string | null => {
-  if (typeof window === "undefined") return null;
+  if (typeof window === 'undefined') return null;
 
-  const token = localStorage.getItem("token");
-  const expiry = localStorage.getItem("expiry");
+  const token = localStorage.getItem('token');
+  const expiry = localStorage.getItem('expiry');
 
   if (!token || !expiry) return null;
 
@@ -108,8 +129,9 @@ export const getValidToken = (): string | null => {
   const expiryTime = parseInt(expiry);
 
   if (now > expiryTime) {
-    localStorage.removeItem("token");
-    localStorage.removeItem("expiry");
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiry');
+    toast.warn('Token expired');
     return null;
   }
 

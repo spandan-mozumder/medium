@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 interface BlogCardProps {
   authorName: string;
   title: string;
@@ -16,22 +17,22 @@ export const BlogCard = ({
 }: BlogCardProps) => {
   return (
     <Link to={`/blog/${id}`}>
-      <div className="p-4 border-b border-slate-200 pb-4 w-screen max-w-screen-md cursor-pointer">
+      <div className="w-screen max-w-screen-md cursor-pointer border-b border-slate-200 p-4 pb-4">
         <div className="flex">
           <Avatar name={authorName} />
-          <div className="font-extralight pl-2 text-sm flex justify-center flex-col">
+          <div className="flex flex-col justify-center pl-2 text-sm font-extralight">
             {authorName}
           </div>
-          <div className="flex justify-center flex-col pl-2 flex justify-center flex-col">
+          <div className="flex flex-col justify-center pl-2">
             <Circle />
           </div>
-          <div className="pl-2 font-thin text-slate-500 text-sm flex justify-center flex-col">
+          <div className="flex flex-col justify-center pl-2 text-sm font-thin text-slate-500">
             {publishedDate}
           </div>
         </div>
-        <div className="text-xl font-semibold pt-2">{title}</div>
-        <div className="text-md font-thin">{content.slice(0, 100) + "..."}</div>
-        <div className="text-slate-500 text-sm font-thin pt-4">
+        <div className="pt-2 text-xl font-semibold">{title}</div>
+        <div className="text-md font-thin">{content.slice(0, 100) + '...'}</div>
+        <div className="pt-4 text-sm font-thin text-slate-500">
           {`${Math.ceil(content.length / 100)} minute(s) read`}
         </div>
       </div>
@@ -45,20 +46,20 @@ export function Circle() {
 
 export function Avatar({
   name,
-  size = "small",
+  size = 'small',
 }: {
   name: string;
-  size?: "small" | "big";
+  size?: 'small' | 'big';
 }) {
   return (
     <div
-      className={`relative inline-flex items-center justify-center overflow-hidden bg-gray-600 rounded-full ${
-        size === "small" ? "w-6 h-6" : "w-10 h-10"
+      className={`relative inline-flex items-center justify-center overflow-hidden rounded-full bg-gray-600 ${
+        size === 'small' ? 'h-6 w-6' : 'h-10 w-10'
       }`}
     >
       <span
         className={`${
-          size === "small" ? "text-xs" : "text-md"
+          size === 'small' ? 'text-xs' : 'text-md'
         } font-extralight text-gray-600 dark:text-gray-300`}
       >
         {name[0]}
